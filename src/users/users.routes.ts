@@ -7,11 +7,10 @@ const router = Router();
 router.route('/users').post(UsersController.createUser);
 
 // READ
-router.route('/users').get(UsersController.readAllUsers);
+router.route('/users').get(UsersController.readUsers);
 router.route('/users/id').get(UsersController.readUserByID);
-router.route('/users/email').get(UsersController.readUserByEmail);
 router.route('/users/login').get(UsersController.readUserLogin);
-router.route('/users/search/email').get(UsersController.readUsersByEmailSearch);
+router.route('/users/search/email').get(UsersController.readUsersSearchEmail);
 
 // UPDATE
 router.route('/users').put(UsersController.updateUser);

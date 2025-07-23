@@ -14,11 +14,11 @@ export const groupQueries = {
     // READ
     readGroupsByUserID: `
     SELECT
-	    groups.*
+	    \`groups\`.*
     FROM ${DB_NAME}.group_users
-    JOIN ${DB_NAME}.groups
+    JOIN ${DB_NAME}.\`groups\`
     WHERE group_users.user_id = ?
-    AND group_users.group_id = groups.id;
+    AND group_users.group_id = \`groups\`.id;
     `,
 
     // UPDATE

@@ -12,24 +12,24 @@ export const userQueries = {
     `,
 
     // READ
-    readAllUsers: `
+    readUsers: `
     SELECT
-        email
+        id, email
     FROM ${DB_NAME}.users;
     `,
 
     readUserByID: `
     SELECT
-        email
+        id, email
     FROM ${DB_NAME}.users
     WHERE id = ?;
     `,
     
-    readUserByEmail: `
+    readUsersSearchEmail: `
     SELECT
-        email
+        id, email
     FROM ${DB_NAME}.users
-    WHERE email = ?;
+    WHERE email LIKE ?;
     `,
 
     readUserLogin: `
@@ -40,27 +40,18 @@ export const userQueries = {
     AND password = ?;
     `,
 
-    readUsersByEmailSearch: `
-    SELECT
-        email
-    FROM ${DB_NAME}.users
-    WHERE email LIKE ?;
-    `,
-
     // UPDATE
     updateUser: `
     UPDATE ${DB_NAME}.users
     SET email = ?, password = ?
-    WHERE id = ?
-    AND email = ?
+    WHERE email = ?
     AND password = ?;
     `,
 
     // DELETE
     deleteUser: `
     DELETE FROM ${DB_NAME}.users
-    WHERE id = ?
-    AND email = ?
+    WHERE email = ?
     AND password = ?;
     `,
 }

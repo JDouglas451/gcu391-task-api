@@ -1,4 +1,4 @@
-import { DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME, DB_CONNECTION_LIMIT } from "../env-config";
+import { DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME, DB_CONNECTION_LIMIT } from "../config.env";
 import { createPool, Pool } from "mysql";
 
 let pool: Pool | null = null;

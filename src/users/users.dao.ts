@@ -12,9 +12,9 @@ export const createUser = async (email: string, password: string) => {
 }
 
 // READ
-export const readAllUsers = async () => {
+export const readUsers = async () => {
     return execute<User>(
-        userQueries.readAllUsers,
+        userQueries.readUsers,
         []
     );
 }
@@ -26,39 +26,32 @@ export const readUserByID = async (id: number) => {
     );
 }
 
-export const readUserByEmail = async (email: string) => {
-    return execute<User>(
-        userQueries.readUserByEmail,
-        [email]
-    );
-}
-
 export const readUserLogin = async (email: string, password: string) => {
     return execute<User>(
-        userQueries.readUserByEmail,
+        userQueries.readUserLogin,
         [email, password]
     );
 }
 
-export const readUsersByEmailSearch = async (s: string) => {
+export const readUsersSearchEmail = async (s: string) => {
     return execute<User>(
-        userQueries.readUsersByEmailSearch,
-        [s]
+        userQueries.readUsersSearchEmail,
+        ['%' + s + '%']
     );
 }
 
 // UPDATE
-export const updateUser = async (new_email: string, new_password: string, id: number, email: string, password: string) => {
+export const updateUser = async (new_email: string, new_password: string, email: string, password: string) => {
     return execute<OkPacket>(
         userQueries.updateUser,
-        [new_email, new_password, id, email, password]
+        [new_email, new_password, email, password]
     );
 }
 
 // DELETE
-export const deleteUser = async (id: number, email: string, password: string) => {
+export const deleteUser = async (email: string, password: string) => {
     return execute<OkPacket>(
-        userQueries.readUserByEmail,
-        [id, email, password]
+        userQueries.deleteUser,
+        [email, password]
     );
 }

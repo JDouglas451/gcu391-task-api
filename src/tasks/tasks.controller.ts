@@ -5,21 +5,21 @@ import * as TaskDAO from "./tasks.dao";
 // CREATE
 export const createTask: RequestHandler = async (req: Request, res: Response) => {
     try {
-        console.log('Received a create task request: ', req.body);
+        console.log('Received a create task request:', req.body);
 
         let group_id = req.body.group_id
         let name = req.body.name;
-        let content = req.body.description;
+        let content = req.body.content;
 
         // send create query
         const okPacket: OkPacket = await TaskDAO.createTask(group_id, name, content);
 
-        console.log("Create task result: ", okPacket);
+        console.log('Create task result:', okPacket);
 
         // send OK packet in 200 response (OK)
         res.status(200).json(okPacket);
     } catch (err) {
-        console.error('[tasks.controller][createTask][Error] ', err);
+        console.error('[tasks.controller][createTask][Error]', err);
 
         // send 500 response (Internal Server Error)
         res.status(500).json({
@@ -31,7 +31,7 @@ export const createTask: RequestHandler = async (req: Request, res: Response) =>
 // READ
 export const readTasksByGroupID: RequestHandler = async (req: Request, res: Response) => {
     try {
-        console.log(`Received a request to read task data by group ID: `, req.body);
+        console.log('Received a request to read task data by group ID:', req.body);
 
         let tasks;
         let group_id: number = parseInt(req.query.group_id as string);
@@ -42,7 +42,7 @@ export const readTasksByGroupID: RequestHandler = async (req: Request, res: Resp
         // send user data in 200 response (OK)
         res.status(200).json(tasks);
     } catch (err) {
-        console.error('[tasks.controller][readTasksByGroupID][Error] ', err);
+        console.error('[tasks.controller][readTasksByGroupID][Error]', err);
 
         // send 500 response (internal server error)
         res.status(500).json({
